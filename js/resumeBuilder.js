@@ -2,6 +2,7 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 
+/* header */
 var name ="Jina Lee"
 $("#header").append(HTMLheaderName.replace("%data%", name))
 
@@ -9,6 +10,64 @@ var role = "Data Scientist"
 $("#header").append(HTMLheaderRole.replace("%data%", role))
 
 $("#main").append(internationalizeButton)
+
+
+
+
+/* bio
+
+*/
+var bio = {}
+bio.contacts={
+    "contactGeneric": "???"
+    , "email" : "jinalee@alumni.cmu.edu"
+    , "mobile" : "(412) 680-3400"
+    , "github" : "www.github.com/jinalee2531"
+    , "location" : "San Francisco, CA"
+}
+
+
+$("#topContacts").append(HTMLemail.replace("%data%",bio.contacts.email))
+$(".flex-item:last").append(HTMLmobile.replace("%data%",bio.contacts.mobile))
+$(".flex-item:last").append(HTMLgithub.replace("%data%",bio.contacts.github))
+$(".flex-item:last").append(HTMLlocation.replace("%data%",bio.contacts.location))
+
+
+/* education
+*/
+var education = {};
+education.schools = []
+education.schools.push({
+    name:"Carnegie Mellon Univeristy"
+    , degree:"Master of Science"
+    , dates: "Aug.2014- Dec.2015"
+    , location: "Pittsburgh, PA"
+    , major: "Information Systems Management"
+});
+
+education.schools.push({
+    name:"Sungkyunkwan University"
+    , degree:"Bachelor of Science"
+    , dates: "Mar.2005- Aug.2010"
+    , location: "Suwon, Republic of Korea"
+    , major: "Industrial Engineering"
+});
+
+var edu_func = function(edu){
+    $("#education").append(HTMLschoolStart);
+    $(".education-entry").append(HTMLschoolName.replace("%data%", edu.name));
+    $(".education-entry").append(HTMLschoolDegree.replace("%data%", edu.degree));
+    $(".education-entry").append(HTMLschoolDates.replace("%data%", edu.dates));
+    $(".education-entry").append(HTMLschoolLocation.replace("%data%", edu.location));
+    $(".education-entry").append(HTMLschoolMajor.replace("%data%", edu.major));
+}
+
+education.display = function(){education.schools.forEach(edu_func);}
+education.display();
+
+/* work
+
+*/
 
 var work={};
 work.jobs = [{
@@ -26,9 +85,6 @@ work.jobs = [{
         , "description": "Designed user experience evaluation of a persuasive mobile application prototype for congestive heart failure patients of Veterans Association Hospital with diverse stakeholders such as physicians, nurses, social workers, case managers. Analyzed data from the evaluation and drew insights for the next version of the application."
     }
     ]
-
-
-
 
 var job_func = function(job){
     $("#workExperience").append(HTMLworkStart);
@@ -52,8 +108,9 @@ var job_func = function(job){
 work.display = function(){
  work.jobs.forEach(job_func);
  }
-
 work.display();
+
+
 
 var projects = {"projects":[]}
 
@@ -99,5 +156,8 @@ var prj_func = function(project) {
 projects.display = function(){
     projects.projects.forEach(prj_func)
 }
-
 projects.display()
+
+
+// append a map!!!
+$("#mapDiv").append(googleMap);
