@@ -1,17 +1,17 @@
+
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
 
 /* header */
+var pic_src = "//media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAkiAAAAJDc5ZjhhYTBkLWFiMjItNDZkOC1hN2JmLWI5ODA3ZTE4NzhjOA.jpg"
+
+
 var name ="Jina Lee"
 $("#header").append(HTMLheaderName.replace("%data%", name))
 
 var role = "Data Scientist"
-$("#header").append(HTMLheaderRole.replace("%data%", role))
-
-$("#main").append(internationalizeButton)
-
-
+$("#header:last").append(HTMLheaderRole.replace("%data%", role))
 
 
 /* bio
@@ -24,19 +24,28 @@ bio.contacts={
     , "mobile" : "(412) 680-3400"
     , "github" : "www.github.com/jinalee2531"
     , "location" : "San Francisco, CA"
+    , "linkedIn" : "linkedin.com/in/jinaleeDataScientist"
 }
 
 
-$("#topContacts").append(HTMLemail.replace("%data%",bio.contacts.email))
+$("#header:last").append(HTMLemail.replace("%data%",bio.contacts.email))
 $(".flex-item:last").append(HTMLmobile.replace("%data%",bio.contacts.mobile))
+$(".flex-item:last").append(HTMLcontactGeneric.replace("%data%",bio.contacts.linkedIn).replace("%contact%","LinkedIn"))
+
 $(".flex-item:last").append(HTMLgithub.replace("%data%",bio.contacts.github))
 $(".flex-item:last").append(HTMLlocation.replace("%data%",bio.contacts.location))
+
+
+//pic_src = "images\\fry.jpg"
+pic_src = "images\\j.jpg"
+$("#header:last").append(HTMLbioPic.replace("%data%", pic_src))
 
 
 /* education
 */
 var education = {};
 education.schools = []
+
 education.schools.push({
     name:"Carnegie Mellon Univeristy"
     , degree:"Master of Science"
@@ -55,11 +64,11 @@ education.schools.push({
 
 var edu_func = function(edu){
     $("#education").append(HTMLschoolStart);
-    $(".education-entry").append(HTMLschoolName.replace("%data%", edu.name));
-    $(".education-entry").append(HTMLschoolDegree.replace("%data%", edu.degree));
-    $(".education-entry").append(HTMLschoolDates.replace("%data%", edu.dates));
-    $(".education-entry").append(HTMLschoolLocation.replace("%data%", edu.location));
-    $(".education-entry").append(HTMLschoolMajor.replace("%data%", edu.major));
+    $(".education-entry:last").append(HTMLschoolName.replace("%data%", edu.name));
+    $(".education-entry:last").append(HTMLschoolDegree.replace("%data%", edu.degree));
+    $(".education-entry:last").append(HTMLschoolDates.replace("%data%", edu.dates));
+    $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", edu.location));
+    $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", edu.major));
 }
 
 education.display = function(){education.schools.forEach(edu_func);}
@@ -161,3 +170,10 @@ projects.display()
 
 // append a map!!!
 $("#mapDiv").append(googleMap);
+initializeMap()
+
+
+
+$("#main:last").append(internationalizeButton)
+
+
